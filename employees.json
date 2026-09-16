@@ -1,0 +1,44 @@
+[
+    {
+        "name":"Mohit Vadgama",
+        "salary":"330000",
+        "designation":"employee",
+        "contact info":"8104548672",
+        "department":"Marketing"
+    },
+    {
+        "name":"Shravani Tandel",
+        "salary":"400000",
+        "designation":"HR Specialist",
+        "contact info":"2543675448",
+        "department":"UI/UX designing"
+    },
+     {
+        "name":"Vira Patni",
+        "salary":"350000",
+        "designation":"Senior Analyst",
+        "contact info":"7452420651",
+        "department":"IT" 
+    },
+     {
+        "name":"Hem Pipariya",
+        "salary":"10000000",
+        "designation":"CEO",
+        "contact info":"8485800532",
+        "department":"Engineering"
+    },
+     {
+        "name":"Shritej Gaikwad",
+        "salary":"320000",
+        "designation":"Data Analyst",
+        "contact info":"7894561230",
+        "department":"Marketing"
+    },
+     {
+        "name":"Anjali Furia",
+        "salary":"300000",
+        "designation":"Product Manager",
+        "contact info":"1236549870",
+        "department":"IT"
+    }
+]

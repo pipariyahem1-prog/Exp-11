@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Directory Search</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    padding:40px;
+}
+
+.container{
+    width:80%;
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+h1{
+    text-align:center;
+    color:#2c3e50;
+    margin-bottom:25px;
+}
+
+#search{
+    width:100%;
+    padding:12px;
+    border:2px solid #1abc9c;
+    border-radius:8px;
+    font-size:16px;
+    margin-bottom:25px;
+    outline:none;
+}
+
+#search:focus{
+    border-color:#16a085;
+}
+
+.card{
+    background:#f9f9f9;
+    border-left:6px solid #1abc9c;
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.card:hover{
+    background:#ecfffb;
+    transform:scale(1.02);
+}
+
+.card h2{
+    color:#16a085;
+    margin-bottom:10px;
+}
+
+.card p{
+    margin:6px 0;
+    color:#444;
+}
+
+.no-result{
+    text-align:center;
+    color:red;
+    font-size:18px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>Employee Directory Search</h1>
+
+<input
+type="text"
+id="search"
+placeholder="Search by Name, Department or Designation">
+
+<div id="employeeList"></div>
+
+</div>
+
+<script>
+
+let employees = [];
+
+fetch("employees.json")
+.then(response => response.json())
+.then(data => {
+    employees = data;
+    displayEmployees(employees);
+});
+
+const search = document.getElementById("search");
+
+search.addEventListener("keyup", function(){
+
+    const value = this.value.toLowerCase();
+
+    const filtered = employees.filter(emp =>
+
+        emp.name.toLowerCase().includes(value) ||
+
+        emp.department.toLowerCase().includes(value) ||
+
+        emp.designation.toLowerCase().includes(value)
+
+    );
+
+    displayEmployees(filtered);
+
+});
+
+function displayEmployees(list){
+
+    const employeeList = document.getElementById("employeeList");
+
+    employeeList.innerHTML = "";
+
+    if(list.length === 0){
+
+        employeeList.innerHTML = "<p class='no-result'>No Employee Found</p>";
+        return;
+
+    }
+
+    list.forEach(emp => {
+
+        employeeList.innerHTML += `
+
+        <div class="card">
+
+            <h2>${emp.name}</h2>
+
+            <p><strong>Designation:</strong> ${emp.designation}</p>
+
+            <p><strong>Department:</strong> ${emp.department}</p>
+
+            <p><strong>Contact:</strong> ${emp["contact info"]}</p>
+
+            <p><strong>Salary:</strong> ₹${Number(emp.salary).toLocaleString()}</p>
+
+        </div>
+
+        `
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
